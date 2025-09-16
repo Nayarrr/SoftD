@@ -26,7 +26,7 @@ public class Downloader{
             while((url = br.readLine()) != null){
                 urlList.add(url);
             }
-            urls = urlList.toArray(new String[0]);
+            Downloader.urls = urlList.toArray(new String[0]);
             br.close();
         }
         catch(Exception e){
@@ -53,13 +53,16 @@ public class Downloader{
             directory.mkdir();
         }
         String fileName = urlString.substring(urlString.lastIndexOf("/") +1);
-        DataOutputStream out = new DataOutputStream(
-                                new BufferedOutputStream(
-                                new FileOutputStream(
-                                new File(directory, fileName))));
+        InputStream inputStream = new URL(urlString).openStream();
+        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(directoryName + "/" + fileName));
+        int data = inputStream.read();
+        while(data != -1){
+            outputStream.write(data);
+            data = inputStream.read();
 
-        InputStream is = urls.openStream();
-
+        }
+        outputStream.close();
+        inputStream.close();    
     }
 
     public static void main(String args[]){
@@ -75,6 +78,7 @@ public class Downloader{
             }
             catch(Exception e){
                 System.err.println("Toi caca lalalolo");
+                System.err.println(url);
             }
         }
     }
