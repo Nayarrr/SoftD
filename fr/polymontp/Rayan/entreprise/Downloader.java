@@ -20,7 +20,7 @@ public class Downloader{
     public static void getURl(String file) throws IOException{
         try{
             BufferedReader br = new BufferedReader(new FileReader(file));
-            List<String> urlList = new ArrayList<>();
+            List<String> urlList = new ArrayList();
             String url;
 
             while((url = br.readLine()) != null){

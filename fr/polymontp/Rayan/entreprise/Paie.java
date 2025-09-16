@@ -78,5 +78,17 @@ public class Paie{
         } catch (IOException e2) {
             e2.printStackTrace();
         }
+
+        System.out.println("on a : " + ent.getLenght());
+
+        try{
+            ent.removeEmploye(c2);
+        }
+        catch(NotExistException m){
+            System.err.println("Il existe pas");
+            m.printStackTrace();
+        }
+
+        System.out.println("on a : " + ent.getLenght());
     }
 }

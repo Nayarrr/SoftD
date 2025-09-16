@@ -1,13 +1,16 @@
 package fr.polymontp.Rayan.entreprise;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Entreprise{
+    public String name;
     private int numberComm;
     private int numberMaxComm;
-    ArrayList<Employe> tabEmployes = new ArrayList<Employe>();
+    List tabEmployes = new ArrayList();
 
-    public Entreprise(int numberMaxComm){
+    public Entreprise(String name, int numberMaxComm){
+        this.name = name;
         this.numberMaxComm = numberMaxComm;
     }
 
@@ -24,17 +27,27 @@ public class Entreprise{
         }
     }
 
+    public void removeEmploye(Employe e) throws NotExistException{
+        if (tabEmployes.contains(e)){
+            if (e instanceof Commercial){
+                numberComm--;
+            }
+            tabEmployes.remove(tabEmployes.indexOf(e));
+        }
+        else{
+            throw new NotExistException(this);
+        }
+    }
 
+    public int getLenght(){
+        return tabEmployes.size();
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    public String toString(){
+        String names = "";
+        for (int i = 0; i<= tabEmployes.size(); i++){
+            names += ((Employe) tabEmployes[i].getName());
+        }
+        return "Entreprise : " + this.name + ;
+    }
 }
