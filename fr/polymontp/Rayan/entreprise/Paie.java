@@ -2,6 +2,7 @@ package fr.polymontp.Rayan.entreprise;
 
 import java.io.IOException;
 import java.lang.Throwable; 
+import java.util.Iterator;
 
 public class Paie{
     public static void main(String[] args){
@@ -31,8 +32,8 @@ public class Paie{
         System.out.println(tableau.length);
         tableau[tableau.length - 1] = theBoss;
 
-        Entreprise ent = new Entreprise(3);
-    
+        Entreprise ent = new Entreprise("LuffyMC",3);
+        Entreprise ent2 = new Entreprise("NabilIndustries", 4);
         try{
             ent.addEmploye(c1);
         }
@@ -43,6 +44,8 @@ public class Paie{
 
         try{
             ent.addEmploye(c2);
+            ent2.addEmploye(c3);
+            ent2.addEmploye(e);
         }
         catch(MaxCommercialException m){
             System.err.println("Trop de commercial force a lui pour trouver une nouvelle entreprise !");
@@ -90,5 +93,30 @@ public class Paie{
         }
 
         System.out.println("on a : " + ent.getLenght());
+
+        System.out.println(ent.toString());
+        System.out.println(ent2.toString());
+
+        Iterator it = ent.iterEmployes();
+        Iterator it2 = ent2.iterEmployes();
+
+        double num = 0;
+        double num2 = 0;
+
+        while (it.hasNext()){
+            num += ((Employe)it.next()).getSalaire();
+        }
+        
+        while (it2.hasNext()){
+            num2 += ((Employe)it2.next()).getSalaire();
+        }
+
+        System.out.println(ent.getName() + " a pour masse salariale : " + num);
+        System.out.println(ent2.getName() + " a pour masse salariale : " + num2);
+
+        ent.trierAlphabetiquement();
+        System.out.println(ent.toString());
+        ent2.trierAlphabetiquement();
+        System.out.println(ent2.toString());
     }
 }

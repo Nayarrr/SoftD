@@ -1,13 +1,16 @@
 package fr.polymontp.Rayan.entreprise;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class Entreprise{
-    public String name;
+    private String name;
     private int numberComm;
     private int numberMaxComm;
-    List tabEmployes = new ArrayList();
+    private List tabEmployes = new ArrayList();
 
     public Entreprise(String name, int numberMaxComm){
         this.name = name;
@@ -44,10 +47,27 @@ public class Entreprise{
     }
 
     public String toString(){
-        String names = "";
-        for (int i = 0; i<= tabEmployes.size(); i++){
-            names += ((Employe) tabEmployes[i].getName());
+        String result = "";
+        for (Object ep : tabEmployes){
+            result += "Entreprise : " + this.name + "; Employe : " + ((Employe) ep).getName() + "\n";
         }
-        return "Entreprise : " + this.name + ;
+
+        return result;
+    }
+
+    public Iterator iterEmployes(){
+        return tabEmployes.iterator();
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public List getEmployes(){
+        return this.tabEmployes;
+    }
+
+    public void trierAlphabetiquement(){
+        Collections.sort(this.tabEmployes);
     }
 }

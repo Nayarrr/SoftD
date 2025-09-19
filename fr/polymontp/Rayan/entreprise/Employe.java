@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public abstract class Employe{
+public abstract class Employe implements Comparable{
     public String name;
     
     public abstract double getSalaire();
@@ -32,10 +32,9 @@ public abstract class Employe{
         catch(Exception e){
             return "Je ne trouve pas le fichier";
         }
-        
     }
 
-    
-
-
+    public int compareTo(Object emp){
+        return this.name.compareTo(((Employe) emp).name);
+    }
 }
