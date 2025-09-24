@@ -42,7 +42,11 @@ public class TrieurWait extends Thread {
 
         synchronized(this){
             while(count < 2){
-                this.wait();
+                try {
+                    this.wait();
+                } catch (InterruptedException ex) {
+                  System.out.println("Thread interrompu");
+                }
             }
         } 
         triFusion(debut, fin);
