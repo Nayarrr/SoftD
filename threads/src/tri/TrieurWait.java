@@ -2,20 +2,23 @@ public class TrieurWait extends Thread {
 
   private int[] t; // tableau � trier
   private int debut, fin; // tranche de ce tableau qu'il faut trier
-  private int count = 0;
+  public int count;
+  public TrieurWait father;
 
-  public TrieurWait(int [] t, int debut, int fin, int count){
+  public TrieurWait(int [] t, int debut, int fin, int count, TrieurWait father){ //Constructeur des enfants 
     this.t=t;
     this.debut = debut;
     this.fin = fin;
     this.count = count;
+    this.father = father;
   }
 
-  public TrieurWait(int [] t){
+  public TrieurWait(int [] t){ //constructeur du trieur principal
     this.t = t;
     this.debut = 0;
     this.fin = t.length - 1;
     this.count = 0;
+    this.father = null;
   }
 
 
@@ -33,8 +36,8 @@ public class TrieurWait extends Thread {
         int milieu = (debut + fin) / 2;
         
         // Créer deux threads pour trier les deux moitiés
-        TrieurWait trieur1 = new TrieurWait(t, debut, milieu, 0);
-        TrieurWait trieur2 = new TrieurWait(t, milieu + 1, fin,0);
+        TrieurWait trieur1 = new TrieurWait(t, debut, milieu, this.count, this);
+        TrieurWait trieur2 = new TrieurWait(t, milieu + 1, fin,this.count, this);
         
         // Lancer les threads
         trieur1.start();
@@ -51,7 +54,12 @@ public class TrieurWait extends Thread {
         } 
         triFusion(debut, fin);
     }
-
+    if (this.father != null) {
+      synchronized(this.father){
+        this.father.count ++;
+        this.father.notify();
+      }
+    }
   }
 
   private void triFusion(int debut, int fin) {
