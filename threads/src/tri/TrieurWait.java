@@ -108,12 +108,11 @@ public class TrieurWait extends Thread {
         Thread.currentThread().interrupt();
     }
 
-    System.out.println("Tableau trié :");
+    System.out.println(" \nTableau trié :");
     for (int i = 0; i < t.length; i++) {
         System.out.print(t[i] + " ; ");
     }
     
     System.out.println();
   }
-
 }
