@@ -1,25 +1,62 @@
 import java.awt.*;
-import java.util.Scanner;
 import javax.swing.*;
 
 public class MyFrameMieux extends JFrame{
-    Scanner sc = new Scanner(System.in);
+
+    String firstname;
+    String lastname;
+    int phone;
 
     public MyFrameMieux(){
         super("SuperHero");
         setSize(700,300);
-        JPanel pan = new JPanel();
-        JLabel firstname = new JLabel("FirstName");
-        JLabel lastName = new JLabel("LastName");
-        JLabel phone = new JLabel("Phone");
-        Container cp = getContentPane();
-        cp.setLayout(new FlowLayout());
+        setTitle("User Info");
 
-        System.out.println("tu veux quoi ?");
-        int nbr = sc.nextInt();
-        for (int i = 0; i < nbr; i++){
-            cp.add(new Button("Button" + (i+1)));
-        }
+        JLabel firstname = new JLabel("FirstName");
+        JLabel lastname = new JLabel("LastName");
+        JLabel phone = new JLabel("Phone");
+
+        JTextField firstnameField = new JTextField();
+        JTextField lastnameField = new JTextField();
+        JTextField phoneField = new JTextField();
+
+        JTextArea textArea = new JTextArea(15, 5);
+
+        firstname.setHorizontalAlignment(SwingConstants.RIGHT);
+        lastname.setHorizontalAlignment(SwingConstants.RIGHT);
+        phone.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        JButton resume = new JButton("Resume");
+        JButton quit = new JButton("Quit");
+
+
+    
+        Container cp = getContentPane();
+        
+        resume.addActionListener( r -> {
+            String info = "FirstName: " + firstnameField.getText() + "\n" +
+                          "LastName: " + lastnameField.getText() + "\n" +
+                          "Phone: " + phoneField.getText() + "\n";
+            textArea.setText(info);
+        });
+
+        quit.addActionListener(q -> System.exit(0));
+
+        JPanel pNorth = new JPanel(new GridLayout(3,2,5,5));
+        JPanel pSouth = new JPanel();
+        pSouth.add(resume);
+        pSouth.add(quit);
+        pNorth.add(firstname);
+        pNorth.add(firstnameField);
+        pNorth.add(lastname);
+        pNorth.add(lastnameField);
+        pNorth.add(phone);
+        pNorth.add(phoneField);
+
+        cp.add(pNorth, BorderLayout.NORTH);
+        cp.add(pSouth, BorderLayout.SOUTH);
+        cp.add(textArea, BorderLayout.CENTER);
+        
         setVisible(true);
     }
 
