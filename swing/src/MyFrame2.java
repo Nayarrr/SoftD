@@ -1,13 +1,13 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class MyFrameMieux extends JFrame{
+public class MyFrame2 extends JFrame{
 
     String firstname;
     String lastname;
     int phone;
 
-    public MyFrameMieux(){
+    public MyFrame2(){
         super("SuperHero");
         setSize(700,300);
         setTitle("User Info");
@@ -61,7 +61,7 @@ public class MyFrameMieux extends JFrame{
     }
 
     public static void main(String[] args){
-        MyFrameMieux f = new MyFrameMieux();
-    }
+        MyFrame2 f = new MyFrame2();
+    }3extends JFr
 
 }

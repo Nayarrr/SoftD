@@ -2,10 +2,10 @@ import java.awt.*;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class MyFrameNul extends JFrame{
+public class MyFrame1 extends JFrame{
     Scanner sc = new Scanner(System.in);
 
-    public MyFrameNul(){
+    public MyFrame1(){
         super("SuperHero");
         setSize(700,300);
         JPanel pan = new JPanel();
@@ -21,7 +21,7 @@ public class MyFrameNul extends JFrame{
     }
 
     public static void main(String[] args){
-        MyFrameNul f = new MyFrameNul();
+        MyFrame1 f = new MyFrame1();
     }
 
 }
