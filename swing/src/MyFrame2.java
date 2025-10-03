@@ -62,6 +62,6 @@ public class MyFrame2 extends JFrame{
 
     public static void main(String[] args){
         MyFrame2 f = new MyFrame2();
-    }3extends JFr
+    }
 
 }

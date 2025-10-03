@@ -24,4 +24,5 @@ public class MyFrame1 extends JFrame{
         MyFrame1 f = new MyFrame1();
     }
 
+    
 }
