@@ -42,6 +42,7 @@ public class ClientConsole implements ChatIF {
    */
   public ClientConsole(String host, int port) 
   {
+
     try 
     {
       client= new ChatClient(host, port, this);
@@ -61,8 +62,7 @@ public class ClientConsole implements ChatIF {
    * This method waits for input from the console.  Once it is 
    * received, it sends it to the client's message handler.
    */
-  public void accept() 
-  {
+  public void accept(){
     try
     {
       BufferedReader fromConsole = 
